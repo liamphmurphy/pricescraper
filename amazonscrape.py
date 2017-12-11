@@ -15,6 +15,8 @@ price = tree.xpath('//span[@class="a-offscreen"]/text()')
 productname = productname[:5]
 price = price[:5]
 
+if (5 > 4):
+    print("Hi!")
 
 print(productname)
 print(price)
