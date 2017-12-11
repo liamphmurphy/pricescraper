@@ -2,9 +2,9 @@ from lxml import html
 import requests
 
 #userquery has to be in the form of an Amazon URL (with the keyword), to be worked on in the future.
-userquery = input("Enter the URL: ")
+userquery = input("What would you like to search for?: ")
 
-page = requests.get(userquery)
+page = requests.get("https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2380057.m570.l1313.TR11.TRC1.A0.H0.Xr7+170.TRS0&_nkw="+userquery+"&_sacat=0")
 tree = html.fromstring(page.content)
 
 # Currently, the program only searches Amazon. More sites to come later!
@@ -14,9 +14,6 @@ price = tree.xpath('//span[@class="bold"]/text()')
 # Cut down the list gathered by the scrape to just 5 results, mainly for testing and reducing load times.
 productname = productname[:5]
 price = price[:5]
-
-if (5 > 4):
-    print("Hi!")
 
 print(productname)
 print(price)
