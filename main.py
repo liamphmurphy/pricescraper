@@ -1,6 +1,6 @@
 from lxml import html
 import requests
-from newscrape import Scrape
+from scrape import Scrape
 
 #service_name = ""
 userquery = input("Enter the name of the product: ")

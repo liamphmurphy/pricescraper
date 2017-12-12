@@ -11,7 +11,6 @@ class Scrape:
             page = requests.get("https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords="+userquery)
             tree = html.fromstring(page.content)
 
-            del productname
             productname = tree.xpath('//h2[@class="a-size-medium s-inline  s-access-title  a-text-normal"]/text()')
             price = tree.xpath('//span[@class="a-offscreen"]/text()')
 
