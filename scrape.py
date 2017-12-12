@@ -1,11 +1,10 @@
 from lxml import html
 import requests
+import time
 
 class Scrape:
 
     def amazon_scrape(userquery):
-        #userquery has to be in the form of an Amazon URL (with the keyword), to be worked on in$
-        #userquery = input("What would you like to search for?: ")
 
         # Grab the default template search URL from amazon than append userquery for the keyword.
         page = requests.get("https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords="+userquery)
@@ -25,11 +24,16 @@ class Scrape:
 
         print(page)
 
+        if len(productname) == 0:
+            print("If you see this message, Amazon is not playing nicely. Attempting to run again.")
+            time.sleep(1)
+            Scrape.amazon_scrape(userquery)
+
     def newegg_scrape(userquery):
         #Grab the default template search URL from newegg than append userquery for the keyword.
         #userquery = input("What would you like to search for?: ")
 
-        page = requests.get("https://www.newegg.com/Product/ProductList.aspx?Submit=ENE&DEPA=0&Order=BESTMATCH&Description=r7+1700"+userquery+"&N=-1&isNodeId=1")
+        page = requests.get("https://www.newegg.com/Product/ProductList.aspx?Submit=ENE&DEPA=0&Order=BESTMATCH&Description="+userquery+"&N=-1&isNodeId=1")
         #page = requests.get(userquery)
         tree = html.fromstring(page.content)
 
