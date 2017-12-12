@@ -1,8 +1,8 @@
 from lxml import html
 import requests
-from scrape import Scrape
+from newscrape import Scrape
 
-
+#service_name = ""
 userquery = input("Enter the name of the product: ")
 
 print("---------------AMAZON---------------\n")
