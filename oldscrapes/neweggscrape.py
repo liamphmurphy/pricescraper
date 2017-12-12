@@ -1,7 +1,7 @@
 from lxml import html
 import requests
 
-#userquery has to be in the form of an Amazon URL (with the keyword), to be worked on in the future.
+#Grab the default template search URL from newegg than append userquery for the keyword.
 userquery = input("What would you like to search for?: ")
 
 page = requests.get("https://www.newegg.com/Product/ProductList.aspx?Submit=ENE&DEPA=0&Order=BESTMATCH&Description=r7+1700"+userquery+"&N=-1&isNodeId=1")
