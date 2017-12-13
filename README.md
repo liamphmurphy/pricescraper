@@ -12,5 +12,5 @@ pip install lxml
 Then, run main.py normally.
 
 ```
-python scrape.py
+python main.py
 ```
