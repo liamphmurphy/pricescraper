@@ -1,15 +1,5 @@
-from lxml import html
-import requests
-from scrape import Scrape
+from scrape import Scrape,Program
 
-#service_name = ""
-userquery = input("Enter the name of the product: ")
+userquery = input("Product: ")
 
-print("---------------AMAZON---------------\n")
-Scrape.amazon_scrape(userquery)
-print("\n")
-print("---------------NEWGG---------------\n")
-Scrape.newegg_scrape(userquery)
-print("\n")
-print("---------------EBAY---------------\n")
-Scrape.ebay_scrape(userquery)
+Program.main(userquery)

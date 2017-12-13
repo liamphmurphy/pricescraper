@@ -1,19 +1,21 @@
 from lxml import html
 import requests
-import sys
+import time
 
 class Scrape:
 
     def run_scrape(service_name,userquery):
+        #userquery = input("Enter the name of the product: ")
         if(service_name == "amazon"):
             page = requests.get("https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords="+userquery)
             tree = html.fromstring(page.content)
 
             productname = tree.xpath('//h2[@class="a-size-medium s-inline  s-access-title  a-text-normal"]/text()')
             price = tree.xpath('//span[@class="a-offscreen"]/text()')
+
             if len(productname) == 0:
-                service_name = "amazon"
-                Program.amazon_rerun(userquery,service_name)
+                print("If you see this message, Amazon is not playing nicely. Attempting to run again.")
+                Scrape.amazon_scrape(userquery)
 
         if(service_name == "newegg"):
             page = requests.get("https://www.newegg.com/Product/ProductList.aspx?Submit=ENE&DEPA=0&Order=BESTMATCH&Description="+userquery+"&N=-1&isNodeId=1")
@@ -30,13 +32,7 @@ class Scrape:
             price = tree.xpath('//span[@class="bold"]/text()')
 
         productname = productname[:5]
-        #print(productname)
-
-        if not productname:
-            del productname # If Amazon returns a 503 response in run_scrape, meaning list is empty, delete the list.
-        else:
-            print(productname) # If list has stuff in it, let it print!
-
+        print(productname)
        # print(price)
 
     def amazon_scrape(userquery):
@@ -50,20 +46,3 @@ class Scrape:
     def ebay_scrape(userquery):
         service_name = "ebay"
         Scrape.run_scrape(service_name,userquery)
-
-
-class Program:
-    def main(userquery):
-        print("---------------AMAZON---------------\n")
-        Scrape.amazon_scrape(userquery)
-        print("\n")
-        print("---------------NEWGG---------------\n")
-        Scrape.newegg_scrape(userquery)
-        print("\n")
-        print("---------------EBAY---------------\n")
-        Scrape.ebay_scrape(userquery)
-        sys.exit()
-
-
-    def amazon_rerun(userquery,service_name):
-        Scrape.amazon_scrape(userquery)
