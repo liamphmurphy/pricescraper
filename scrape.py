@@ -32,8 +32,6 @@ class Scrape:
 
             product_price = [s.strip('\n\t\t\t\t\t') for s in product_price]
 
-       # product_title = product_title[:5]
-
         if not product_title:
             del product_title # If Amazon returns a 503 response in run_scrape, meaning list is empty, delete the list.
         else:
