@@ -1,5 +1,5 @@
 from scrape import Scrape,Program
 
-userquery = input("Product: ")
+user_query = input("Product: ")
 
-Program.main(userquery)
+Program.main(user_query)
