@@ -9,8 +9,8 @@ lxml is required.
 pip install lxml
 ```
 
-Then, run scrape.py normally.
+Then, run main.py normally.
 
 ```
-python scrape.py
+python main.py
 ```
