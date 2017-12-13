@@ -32,15 +32,8 @@ class Scrape:
 
             product_price = [s.strip('\n\t\t\t\t\t') for s in product_price]
 
-        if not product_title:
-            del product_title # If Amazon returns a 503 response in run_scrape, meaning list is empty, delete the list.
-        else:
-            print(product_title[:5]) # If list has stuff in it, let it print!
-
-        if not product_price:
-            del product_price # Delete empty lists, same reason as product_title.
-        else:
-            print(product_price[:5])
+        for product_title, product_price in zip(product_title,product_price):
+            print(product_title,product_price)
 
     def amazon_scrape(user_query):
         service_name = "amazon"
@@ -48,8 +41,8 @@ class Scrape:
 
     def newegg_scrape(user_query):
         service_name = "newegg"
-        Scrape.run_scrape(service_name,user_query)
 
+        Scrape.run_scrape(service_name,user_query)
     def ebay_scrape(user_query):
         service_name = "ebay"
         Scrape.run_scrape(service_name,user_query)
