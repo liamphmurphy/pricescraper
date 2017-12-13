@@ -30,15 +30,19 @@ class Scrape:
             product_title = tree.xpath('//a[@class="vip"]/text()')
             product_price = tree.xpath('//span[@class="bold"]/text()')
 
-        product_title = product_title[:5]
-        #print(product_title)
+            product_price = [s.strip('\n\t\t\t\t\t') for s in product_price]
+
+       # product_title = product_title[:5]
 
         if not product_title:
             del product_title # If Amazon returns a 503 response in run_scrape, meaning list is empty, delete the list.
         else:
-            print(product_title) # If list has stuff in it, let it print!
+            print(product_title[:5]) # If list has stuff in it, let it print!
 
-       # print(product_price)
+        if not product_price:
+            del product_price # Delete empty lists, same reason as product_title.
+        else:
+            print(product_price[:5])
 
     def amazon_scrape(user_query):
         service_name = "amazon"
@@ -64,7 +68,7 @@ class Program:
         print("\n")
         print("---------------EBAY---------------\n")
         Scrape.ebay_scrape(user_query)
-        # force an exit, the program tends to run the program a second time. 
+        # force an exit, the program tends to run the program a second time.
         sys.exit()
 
 
