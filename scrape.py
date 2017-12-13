@@ -31,7 +31,11 @@ class Scrape:
             product_price = tree.xpath('//span[@class="bold"]/text()')
 
             product_price = [s.strip('\n\t\t\t\t\t') for s in product_price]
+        
+        # Reduce number of characters in product_title to 60 because the product names can get rather long.
+        product_title = [item[:60] for item in product_title]
 
+        # Have the two lists display vertically, so you can actually read the results properly.
         for product_title, product_price in zip(product_title,product_price):
             print(product_title,product_price)
 
