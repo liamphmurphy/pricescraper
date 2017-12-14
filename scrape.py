@@ -36,12 +36,7 @@ class Scrape:
         # Reduce number of characters in product_title to 60 because the product names can get rather long.
         product_title = [item[:60] for item in product_title]
         product_price = [s.strip('$') for s in product_price]
-        #product_price = [s.strip(',') for s in product_price]
-        #product_price = [s.strip('.') for s in product_price]
         product_price = [s.strip('|') for s in product_price]
-        #product_price = [s.strip('-') for s in product_price]
-        #product_price = [s.strip(' ') for s in product_price]
-        #product_price = [s.strip('') for s in product_price]
         product_price = [x for x in product_price if x]
 
 
@@ -52,9 +47,7 @@ class Scrape:
             except ValueError:
                 pass
 
-            '''product_price = [s.strip('|') for s in product_price]
-            product_price = [s.strip('') for s in product_price]
-            product_price = [x for x in product_price if x]'''
+            # Put both lists into a single variable
             compiled_data = product_title,"$ "+product_price
             #print(compiled_data[:2])
             print(compiled_data)
