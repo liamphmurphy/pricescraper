@@ -30,8 +30,9 @@ class Scrape:
             product_title = tree.xpath('//a[@class="vip"]/text()')
             product_price = tree.xpath('//span[@class="bold"]/text()')
 
+            # Below 2 commands are workarounds. Ebay scrape is causing these characters to appear, so this temporarily removes them.
+            product_title = [s.strip('\r\n\t\t') for s in product_title]
             product_price = [s.strip('\n\t\t\t\t\t') for s in product_price]
-            #product_title = [s.strip('') for s in product_price]
                  
         # Reduce number of characters in product_title to 60 because the product names can get rather long.
         product_title = [item[:60] for item in product_title]
