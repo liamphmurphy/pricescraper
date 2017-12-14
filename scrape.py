@@ -31,13 +31,33 @@ class Scrape:
             product_price = tree.xpath('//span[@class="bold"]/text()')
 
             product_price = [s.strip('\n\t\t\t\t\t') for s in product_price]
-        
+            #product_title = [s.strip('') for s in product_price]
+                 
         # Reduce number of characters in product_title to 60 because the product names can get rather long.
         product_title = [item[:60] for item in product_title]
+        product_price = [s.strip('$') for s in product_price]
+        #product_price = [s.strip(',') for s in product_price]
+        #product_price = [s.strip('.') for s in product_price]
+        product_price = [s.strip('|') for s in product_price]
+        #product_price = [s.strip('-') for s in product_price]
+        #product_price = [s.strip(' ') for s in product_price]
+        #product_price = [s.strip('') for s in product_price]
+        product_price = [x for x in product_price if x]
+
 
         # Have the two lists display vertically, so you can actually read the results properly.
         for product_title, product_price in zip(product_title,product_price):
-            print(product_title,product_price)
+            try:
+                float(product_price)
+            except ValueError:
+                pass
+
+            '''product_price = [s.strip('|') for s in product_price]
+            product_price = [s.strip('') for s in product_price]
+            product_price = [x for x in product_price if x]'''
+            compiled_data = product_title,"$ "+product_price
+            #print(compiled_data[:2])
+            print(compiled_data)
 
     def amazon_scrape(user_query):
         service_name = "amazon"
