@@ -1,3 +1,4 @@
+#!/usr/bin/python
 from scrape import Scrape,Program
 
 user_query = input("Product: ")

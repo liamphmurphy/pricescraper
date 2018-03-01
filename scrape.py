@@ -1,7 +1,8 @@
+#!/usr/bin/python
+import sys
+import csv
 from lxml import html
 import requests
-import sys
-import math
 
 class Scrape:
 
@@ -76,6 +77,11 @@ class Program:
         product_title = [item[:60] for item in product_title]
         product_price = [s.strip('$') for s in product_price]
         product_price = [s.strip('|') for s in product_price]
+        product_price = [s.strip('Facebook') for s in product_price]
+        product_price = [s.strip('Twitter') for s in product_price]
+        product_price = [s.strip('Instagram') for s in product_price]
+        product_price = [s.strip('Google') for s in product_price]
+        product_price = [s.strip('Pinterest') for s in product_price]
         product_price = [x for x in product_price if x]
 
         # Have the two lists display vertically, so you can actually read the results properly.
@@ -89,8 +95,10 @@ class Program:
             compiled_data = product_title,product_price
             #print(compiled_data[:2])
             print(compiled_data)
-
+            #Math.min_price(product_price)
+            
 class Math: 
-    def min_price(product_price,compiled_data):
-        cheapest = min(compiled_data[1:2])
-        print(cheapest)
+    def min_price(product_price):
+        #sorted(product_price, reverse=True)
+        sorted(product_price, reverse=True)
+        print(product_price)
